@@ -1,0 +1,317 @@
+package ti
+class Address {
+    static constraints = {
+    }
+}
+package ti
+class AgentBranch {
+	static belongsTo = [
+		agentBranchType : AgentBranchType
+	]
+	static constraints = {
+	}
+}
+package ti
+class AgentBranchMemberType {
+    static constraints = {
+    }
+}
+package ti
+class AgentBranchType {
+	static hasMany = [
+		agentBranchs : AgentBranch
+	]
+	static constraints = {
+	}
+}
+package ti
+class Agent {
+	static belongsTo = [
+		groupType : GroupType,
+		jobAssignment : SystemJobAssignment
+	]
+	static hasMany = [
+		mileageReports : MileageReport
+	]
+	static constraints = {
+	}
+}
+package ti
+class AgentInvestigation {
+    static constraints = {
+    }
+}
+package ti
+class BirthRecord {
+	CaseSection caseSection
+	static constraints = {
+	}
+}
+package ti
+class Case {
+	static belongsTo =  [
+		agent : Agent,
+		taskDetail : TaskDetail
+	]
+	static hasMany = [
+		agentInvestigations : AgentInvestigation,
+		caseSections : CaseSection,
+		estimatedCompletions : EstimatedCompletion,
+		leads : Lead,
+		statuses : CaseStatus
+	]
+	static constraints = {
+	}
+}
+package ti
+class CaseSection {
+	static hasOne = [
+		birthRecord : BirthRecord,
+		generalRecord : GeneralRecord,
+		lead : Lead,
+		policeRecord : PoliceRecord,
+		reference : Reference,
+		subjectInterview : SubjectInterview,
+		verifiableCaseSection : VerifiableCaseSection
+	]
+	static belongsTo = [
+		// case : Case,
+		caseSectionType : CaseSectionType
+	]
+	static hasMany = [ icdIssues : ICDIssue ]
+	static constraints = {
+	}
+}
+package ti
+class CaseSectionType {
+    static constraints = {
+    }
+}
+package ti
+class CaseStatus {
+	// static belongsTo = [ 'case':Case ]
+	static constraints = {
+	}
+}
+package ti
+class Contact {
+    static constraints = {
+    }
+}
+package ti
+class EducationRecord {
+    static constraints = {
+    }
+}
+package ti
+class EmploymentRecord {
+    static constraints = {
+    }
+}
+package ti
+class EstimatedCompletion {
+    static constraints = {
+    }
+}
+package ti
+class ExSpouse {
+	Reference reference // note really, just doing this for UML diagram
+	// note really, just doing this for UML diagram
+	// static belongsTo = [ reference : Reference ]
+	static constraints = {
+	}
+}
+package ti
+class GeneralRecord {
+	CaseSection caseSection
+	static constraints = {
+	}
+}
+package ti
+class GeneralReference {
+	Reference reference // note really, just doing this for UML diagram
+	// note really, just doing this for UML diagram
+	// static belongsTo = [ reference : Reference ]
+	static constraints = {
+	}
+}
+package ti
+class GroupType {
+    static constraints = {
+    }
+}
+package ti
+class ICDIssue {
+	String comments
+	// Person overriddenBy
+	static belongsTo = [
+		caseSection : CaseSection,
+		icdType : ICDIssueType
+	]
+	static constraints = {
+	}
+}
+package ti
+class ICDIssueType {
+    static constraints = {
+    }
+}
+package ti
+class Informant {
+	Reference reference // note really, just doing this for UML diagram
+	// note really, just doing this for UML diagram
+	// static belongsTo = [ reference : Reference ]
+	static constraints = {
+	}
+}
+package ti
+class Lead {
+	CaseSection caseSection
+	static belongsTo = [
+		leadType : LeadType
+	]
+	static constraints = {
+	}
+}
+package ti
+class LeadType {
+    static constraints = {
+    }
+}
+package ti
+class MachineAssignment {
+	String machineName
+	static belongsTo = [
+		person : Person
+	]
+	static constraints = {
+	}
+}
+package ti
+class MileageReport {
+    static constraints = {
+    }
+}
+package ti
+class Neighborhood {
+    static constraints = {
+    }
+}
+package ti
+class Person {
+    static constraints = {
+    }
+}
+package ti
+class PersonRole {
+	static belongsTo = [
+		personRoleType : PersonRoleType,
+		person : Person
+	]
+	static constraints = {
+	}
+}
+package ti
+class PersonRoleType {
+    static constraints = {
+    }
+}
+package ti
+class PoliceRecord {
+	Address address
+	CaseSection caseSection
+	static constraints = {
+	}
+}
+package ti
+class Reference {
+	CaseSection caseSection
+	// note really, just doing this for UML diagram
+	static hasMany = [
+		exSpouse : ExSpouse,
+		informant : Informant,
+		generalReference : GeneralReference
+	]
+	static constraints = {
+	}
+}
+package ti
+class RentalRecord {
+	CaseSection caseSection
+    static constraints = {
+    }
+}
+package ti
+class SubjectInterview {
+	CaseSection caseSection
+	static constraints = {
+	}
+}
+package ti
+class SubjectInterviewSection {
+	static belongsTo = [
+		sectionType : SubjectInterviewSectionType,
+		subjectInterview : SubjectInterview
+	]
+	static constraints = {
+	}
+}
+package ti
+class SubjectInterviewSectionType {
+	static hasMany = [ subjectInterviewSections : SubjectInterviewSection ]
+	static constraints = {
+	}
+}
+package ti
+class SystemGroupMember {
+	static belongsTo = [
+		jobAssignment : SystemJobAssignment,
+		agentBranchType : SystemGroupType,
+		agentBranchMemberType : SystemGroupMemberType
+	]
+	static constraints = {
+	}
+}
+package ti
+class SystemGroupMemberType {
+    static constraints = {
+    }
+}
+package ti
+class SystemGroupType {
+    static constraints = {
+    }
+}
+package ti
+class SystemJobAssignment {
+	static hasMany = [
+		agentBranches : SystemGroupMember
+	]
+	static belongsTo = [
+		person : Person
+	]
+	static constraints = {
+	}
+}
+package ti
+class TaskDetail {
+    static constraints = {
+    }
+}
+package ti
+class VerifiableCaseSection {
+	CaseSection caseSection
+	static hasMany = [
+		contacts : Contact,
+		educationRecords : EducationRecord,
+		employmentRecords : EmploymentRecord,
+		neighborhoodRecords : Neighborhood
+	]
+	static constraints = {
+	}
+}
+package ti
+class VerificationSourceICDIssue {
+	static constraints = {
+	}
+}
