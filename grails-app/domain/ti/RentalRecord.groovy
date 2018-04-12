@@ -1,9 +1,14 @@
 package ti
 
 class RentalRecord {
-	
-	CaseSection caseSection
 
-    static constraints = {
-    }
+	static belongsTo = [ neighborhood:Neighborhood ]
+
+	static constraints = {
+	}
+
+	static mapping = {
+		table 'INSPIRE_RENTAL_RECORDS'
+		version false
+	}
 }

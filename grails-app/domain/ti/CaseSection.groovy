@@ -2,6 +2,8 @@ package ti
 
 class CaseSection {
 
+	String INSPIRE_CASE_SECTIONS = ''  // for the UML diagram
+
 	static hasOne = [
 		birthRecord : BirthRecord,
 		generalRecord : GeneralRecord,
@@ -18,6 +20,11 @@ class CaseSection {
 	]
 
 	static hasMany = [ icdIssues : ICDIssue ]
+
+	static mapping = {
+		table 'INSPIRE_CASE_SECTIONS'
+		version false
+	}
 
 	static constraints = {
 	}
